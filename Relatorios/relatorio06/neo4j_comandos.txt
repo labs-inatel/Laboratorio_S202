@@ -1,0 +1,75 @@
+RELATÓRIO 06 - NEO4J: 
+
+QUESTÃO 01:
+
+1. Todos os registros do banco de dados: 
+MATCH (g:Game) RETURN g.titulo, g.genero, g.ano
+
+2. Jogos lançados após o ano de 2012: 
+MATCH (g:Game) WHERE g.ano > 2012 RETURN g.titulo, g.genero, g.ano
+
+3. Jogos do gênero de terror: 
+MATCH (g:Game) WHERE g.genero = 'Terror' RETURN g.titulo, g.genero, g.ano
+
+4. Jogos com uma nota igual ou maior que 7: 
+MATCH (j:Jurado)-[r:JOGOU]->(g:Game) WHERE r.nota >= 7 RETURN g.titulo, g.genero, g.ano, r.nota, r.horas, j.nome
+
+
+QUESTÃO 02:
+
+1. Acrescente quatro novos jogos ao banco de dados.
+
+CREATE(g:Game{titulo:'Bloodborne',genero:'RPG',ano:2015});
+CREATE(g:Game{titulo:'Resident Evil',genero:' Survival horror',ano:1996});
+CREATE(g:Game{titulo:'Silent Hill',genero:'Terror',ano:1999});
+CREATE(g:Game{titulo:'Elden Ring',genero:'RPG',ano:2022});
+
+2. Adicione três novos jurados ao banco de dados.
+
+CREATE(j:Jurado{nome:'Alanzoka'});
+CREATE(j:Jurado{nome:'BRKsEDU'});
+CREATE(j:Jurado{nome:'VenomExtreme'});
+
+3. Estabeleça as relações entre os jurados e os jogos que eles avaliaram, incluindo a nota e a quantidade de horas jogadas.
+
+MATCH(j:Jurado{nome:'Alanzoka'}),(g:Game{titulo:'Bloodborne'})
+CREATE(j)-[:JOGOU{nota:10, horas:100}]->(g);
+
+MATCH(j:Jurado{nome:'Alanzoka'}),(g:Game{titulo:'Resident Evil'})
+CREATE(j)-[:JOGOU{nota:10, horas:50}]->(g);
+
+MATCH(j:Jurado{nome:'Alanzoka'}),(g:Game{titulo:'Silent Hill'})
+CREATE(j)-[:JOGOU{nota:10, horas:40}]->(g);
+
+MATCH(j:Jurado{nome:'Alanzoka'}),(g:Game{titulo:'Elden Ring'})
+CREATE(j)-[:JOGOU{nota:10, horas:140}]->(g);
+
+MATCH(j:Jurado{nome:'BRKsEDU'}),(g:Game{titulo:'Bloodborne'})
+CREATE(j)-[:JOGOU{nota:10, horas:100}]->(g);
+
+MATCH(j:Jurado{nome:'BRKsEDU'}),(g:Game{titulo:'Resident Evil'})
+CREATE(j)-[:JOGOU{nota:10, horas:50}]->(g);
+
+MATCH(j:Jurado{nome:'BRKsEDU'}),(g:Game{titulo:'Silent Hill'})
+CREATE(j)-[:JOGOU{nota:10, horas:40}]->(g);
+
+MATCH(j:Jurado{nome:'BRKsEDU'}),(g:Game{titulo:'Elden Ring'})
+CREATE(j)-[:JOGOU{nota:10, horas:140}]->(g);
+
+MATCH(j:Jurado{nome:'VenomExtreme'}),(g:Game{titulo:'Bloodborne'})
+CREATE(j)-[:JOGOU{nota:10, horas:100}]->(g);
+
+MATCH(j:Jurado{nome:'VenomExtreme'}),(g:Game{titulo:'Resident Evil'})
+CREATE(j)-[:JOGOU{nota:10, horas:50}]->(g);
+
+MATCH(j:Jurado{nome:'VenomExtreme'}),(g:Game{titulo:'Silent Hill'})
+CREATE(j)-[:JOGOU{nota:10, horas:40}]->(g);
+
+MATCH(j:Jurado{nome:'VenomExtreme'}),(g:Game{titulo:'Elden Ring'})
+CREATE(j)-[:JOGOU{nota:10, horas:140}]->(g);
+
+MATCH(j:Jurado{nome:'BRKsEDU'}),(g:Game{titulo:'Devour'})
+CREATE(j)-[:JOGOU{nota:10, horas:500}]->(g);
+
+MATCH(j:Jurado{nome:'Alanzoka'}),(g:Game{titulo:'Warzone'})
+CREATE(j)-[:JOGOU{nota:10, horas: 1000}]->(g);

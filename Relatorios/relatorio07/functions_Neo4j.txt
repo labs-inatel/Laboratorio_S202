@@ -1,0 +1,52 @@
+RELATÓRIO O7 - Functions:
+
+AGREGAÇÕES:
+
+MATCH(n:Funcionario) RETURN COUNT(*); 
+
+MATCH(n:Funcionario) RETURN SUM(n.horas); 
+
+MATCH(n:Funcionario) RETURN AVG(n.salario); 
+
+MATCH(n:Funcionario) RETURN MIN(n.idade); 
+
+MATCH(n:Funcionario) RETURN MAX(n.idade);
+
+
+FUNÇÕES MATEMÁTICAS:
+
+RETURN ABS(6- 12);
+// Resultado: 6
+
+RETURN CEIL(2.5), CEIL(13.5);
+// Resultado: 3 e 14
+
+RETURN RAND();
+// Resultado 0.00987654, 0.00987654, 0.15827364, 0.72391234, ...
+
+RETURN ROUND(2.348493, 2, 'CEILING');
+// Resultado: 2.25
+
+RETURN SIGN(842992), SIGN(-1039393);
+// Resultado: 1 (positivo), -1 (negativo)
+
+
+FUNÇÕES DE STRING:
+
+RETURN LEFT('Welcome', 5);
+// Resultado: "Welco"
+
+RETURN TOLOWER('Welcome');
+// Resultado: "Welcome"
+
+RETURN REPLACE("Welcome", "e", "i");
+// Resultado: "Wilcomi"
+
+RETURN REVERSE("Welcome");
+// Resultado: "emocleW"
+
+RETURN SPLIT('Hello.app', '.');
+// Resultado: ["Hello","app"]
+
+RETURN substring('Welcome', 5);
+// Resultado: "ome"

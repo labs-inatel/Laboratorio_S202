@@ -1,0 +1,127 @@
+// Restrições de Nós (Nodes) com labels e propriedades:
+
+CREATE (p1: Pessoa:Desenhista {nome: 'Alessandro', sexo: 'M', idade: 48})
+CREATE (p2: Pessoa:Montadora {nome: 'Wanderlea', sexo: 'F', idade: 50})
+CREATE (p3: Pessoa:Estudante {nome: 'Ian', sexo: 'M', idade: 15})
+CREATE (p4: Pessoa:Estudante {nome: 'Iza', sexo: 'F', idade: 20})
+CREATE (p5: Pessoa:Aposentado {nome: 'Zé Vitor', sexo: 'M', idade: 74})
+CREATE (p6: Pessoa:Aposentada {nome: 'Déti', sexo: 'F', idade: 65})
+CREATE (p7: Pessoa:Tecnico {nome: 'Giovani', sexo: 'M', idade: 35})
+CREATE (p8: Pessoa:Administrativa {nome: 'Isabela', sexo: 'F', idade: 30})
+CREATE (p9: Pessoa:Estudante {nome: 'Gabriel', sexo: 'M', idade: 11})
+CREATE (p10: Pessoa:Estudante {nome: 'Julia', sexo: 'F', idade: 13})
+
+// Criar relacionamentos entre as pessoas:
+
+// Foi utilizado a relação "PAI_DE" para referir pai_de e mãe_de:
+
+MATCH (p1 {nome: 'Alessandro'}), (p3 {nome: 'Ian'})
+CREATE (p1)-[:PAI_DE]->(p3)
+
+MATCH (p1 {nome: 'Alessandro'}), (p4 {nome: 'Iza'})
+CREATE (p1)-[:PAI_DE]->(p4)
+
+MATCH (p2 {nome: 'Wanderlea'}), (p3 {nome: 'Ian'})
+CREATE (p2)-[:PAI_DE]->(p3)
+
+MATCH (p2 {nome: 'Wanderlea'}), (p4 {nome: 'Iza'})
+CREATE (p2)-[:PAI_DE]->(p4)
+
+MATCH (p5 {nome: 'Zé Vitor'}), (p2 {nome: 'Wanderlea'})
+CREATE (p5)-[:PAI_DE]->(p2)
+
+MATCH (p6 {nome: 'Déti'}), (p2 {nome: 'Wanderlea'})
+CREATE (p6)-[:PAI_DE]->(p2)
+
+MATCH (p7 {nome: 'Giovani'}), (p10 {nome: 'Julia'})
+CREATE (p7)-[:PAI_DE]->(p10)
+
+MATCH (p8 {nome: 'Isabela'}), (p10 {nome: 'Julia'})
+CREATE (p8)-[:PAI_DE]->(p10)
+
+// Foi utilizado a relação "ESPOSO_DE" para referir esposo_de e esposa_de:
+
+MATCH (p1 {nome: 'Alessandro'}), (p2 {nome: 'Wanderlea'})
+CREATE (p1)-[:ESPOSO_DE {data_casamento: '1999-08-20'}]->(p2)
+
+MATCH (p5 {nome: 'Zé Vitor'}), (p6 {nome: 'Déti'})
+CREATE (p5)-[:ESPOSO_DE {data_casamento: '1965-05-15'}]->(p6)
+
+MATCH (p7 {nome: 'Giovani'}), (p8 {nome: 'Isabela'})
+CREATE (p7)-[:ESPOSO_DE {data_casamento: '2003-03-10'}]->(p8)
+
+// Foi utilizado a relação "AVO_DE" para referir avô_de e avó_de:
+
+MATCH (p6 {nome: 'Déti'}), (p9 {nome: 'Gabriel'})
+CREATE (p6)-[:AVO_DE]->(p9)
+
+MATCH (p5 {nome: 'Zé Vitor'}), (p9 {nome: 'Gabriel'})
+CREATE (p5)-[:AVO_DE]->(p9)
+
+MATCH (p5 {nome: 'Zé Vitor'}), (p3 {nome: 'Ian'})
+CREATE (p5)-[:AVO_DE]->(p3)
+
+MATCH (p6 {nome: 'Déti'}), (p3 {nome: 'Ian'})
+CREATE (p6)-[:AVO_DE]->(p3)
+
+MATCH (p5 {nome: 'Zé Vitor'}), (p4 {nome: 'Iza'})
+CREATE (p5)-[:AVO_DE]->(p4)
+
+MATCH (p6 {nome: 'Déti'}), (p4 {nome: 'Iza'})
+CREATE (p6)-[:AVO_DE]->(p4)
+
+// Foi utilizado a relação "IRMAO_DE" para referir irmão_de e irmã_de:
+
+MATCH (p3 {nome: 'Ian'}), (p4 {nome: 'Iza'})
+CREATE (p3)-[:IRMAO_DE]->(p4)
+
+MATCH (p1 {nome: 'Alessandro'}), (p7 {nome: 'Giovani'})
+CREATE (p1)-[:IRMAO_DE]->(p7)
+
+// Foi utilizado a relação "SOGRO_DE" para referir sogro_de e sogra_de:
+
+MATCH (p5 {nome: 'Zé Vitor'}), (p1 {nome: 'Alessandro'})
+CREATE (p5)-[:SOGRO_DE]->(p1)
+
+MATCH (p6 {nome: 'Déti'}), (p1 {nome: 'Alessandro'})
+CREATE (p6)-[:SOGRO_DE]->(p1)
+
+// Foi utilizado a relação "PRIMO_DE" para referir primo_de e prima_de:
+
+MATCH (p9 {nome: 'Gabriel'}), (p3 {nome: 'Ian'})
+CREATE (p9)-[:PRIMO_DE]->(p3)
+
+MATCH (p10 {nome: 'Julia'}), (p3 {nome: 'Ian'})
+CREATE (p10)-[:PRIMO_DE]->(p3)
+
+MATCH (p9 {nome: 'Gabriel'}), (p4 {nome: 'Iza'})
+CREATE (p9)-[:PRIMO_DE]->(p4)
+
+MATCH (p10 {nome: 'Julia'}), (p4 {nome: 'Iza'})
+CREATE (p10)-[:PRIMO_DE]->(p4)
+
+// Foi utilizado a relação "SOBRINHO_DE" para referir sobrinho_de e sobrinha_de:
+
+MATCH (p9 {nome: 'Gabriel'}), (p1 {nome: 'Alessandro'})
+CREATE (p9)-[:SOBRINHO_DE]->(p1)
+
+MATCH (p10 {nome: 'Julia'}), (p1 {nome: 'Alessandro'})
+CREATE (p10)-[:SOBRINHO_DE]->(p1)
+
+MATCH (p9 {nome: 'Gabriel'}), (p2 {nome: 'Wanderlea'})
+CREATE (p9)-[:SOBRINHO_DE]->(p2)
+
+MATCH (p10 {nome: 'Julia'}), (p2 {nome: 'Wanderlea'})
+CREATE (p10)-[:SOBRINHO_DE]->(p2)
+
+MATCH (p3 {nome: 'Ian'}), (p7 {nome: 'Giovani'})
+CREATE (p3)-[:SOBRINHO_DE]->(p7)
+
+MATCH (p4 {nome: 'Iza'}), (p7 {nome: 'Giovani'})
+CREATE (p4)-[:SOBRINHO_DE]->(p7)
+
+MATCH (p3 {nome: 'Ian'}), (p8 {nome: 'Isabela'})
+CREATE (p3)-[:SOBRINHO_DE]->(p8)
+
+MATCH (p4 {nome: 'Iza'}), (p8 {nome: 'Isabela'})
+CREATE (p4)-[:SOBRINHO_DE]->(p8)

@@ -1,0 +1,12 @@
+[{
+   "nome": "Elefante Bobby",
+   "cores": ["preto","marrom"],
+   "som": ["PAAAH","Paaah"],
+   "especie": "Africano"
+},
+{
+   "nome": "Elefante Azuka",
+   "cores": ["cinza", "branco"],
+   "som": "Ufff Ufff",
+   "especie": "Asiático"
+}]

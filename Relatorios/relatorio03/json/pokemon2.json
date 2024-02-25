@@ -1,0 +1,26 @@
+[
+    {
+        "_id": {
+            "$oid": "640ca66468e547861f0fb3cf"
+        },
+        "id": 2,
+        "name": {
+            "english": "Ivysaur",
+            "japanese": "\u30d5\u30b7\u30ae\u30bd\u30a6",
+            "chinese": "\u5999\u86d9\u8349",
+            "french": "Herbizarre"
+        },
+        "type": [
+            "Grass",
+            "Poison"
+        ],
+        "base": {
+            "HP": 60,
+            "Attack": 62,
+            "Defense": 63,
+            "Sp. Attack": 80,
+            "Sp. Defense": 80,
+            "Speed": 60
+        }
+    }
+]

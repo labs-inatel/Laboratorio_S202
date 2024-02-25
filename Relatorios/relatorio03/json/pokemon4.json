@@ -1,0 +1,25 @@
+[
+    {
+        "_id": {
+            "$oid": "640ca66468e547861f0fb3d1"
+        },
+        "id": 4,
+        "name": {
+            "english": "Charmander",
+            "japanese": "\u30d2\u30c8\u30ab\u30b2",
+            "chinese": "\u5c0f\u706b\u9f99",
+            "french": "Salam\u00e8che"
+        },
+        "type": [
+            "Fire"
+        ],
+        "base": {
+            "HP": 39,
+            "Attack": 52,
+            "Defense": 43,
+            "Sp. Attack": 60,
+            "Sp. Defense": 50,
+            "Speed": 65
+        }
+    }
+]
